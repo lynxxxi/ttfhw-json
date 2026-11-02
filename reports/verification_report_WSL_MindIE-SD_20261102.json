@@ -1973,7 +1973,7 @@
       "cmake": "3.22.1",
       "concurrency": 8,
       "concurrency_ratio": "50%",
-      "notes": "首次构建990秒在插件ABI检测阶段失败；采用仓库devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0并清理失败阶段插件缓存后，两次完整入口构建均成功，分别80秒。未修改源码。标准requirements因Triton版本约束冲突无法直接安装，兼容安装采用--no-deps并保留pip check失败，不能判定标准安装全流程通过。wheel SHA256：ad16ec35422fefa861607c6e17075e2193663a7d4951478f5bbdb5ab96090021。编译及两次重试合计1150秒；skill限制是单个问题调试30–60分钟（依赖安装不计入），不是独立编译耗时SLA，本次时间未超限。 公开版已去除主机身份、本地路径及其他作业进程信息，完整证据仅保存在本地。"
+      "notes": "首次构建990秒在插件ABI检测阶段失败；采用仓库devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0并清理失败阶段插件缓存后，两次完整入口构建均成功，分别80秒。未修改源码。标准requirements因Triton版本约束冲突无法直接安装，兼容安装采用--no-deps并保留pip check失败，不能判定标准安装全流程通过。wheel SHA256：ad16ec35422fefa861607c6e17075e2193663a7d4951478f5bbdb5ab96090021。编译及两次重试合计1150秒；skill限制是单个问题调试30–60分钟（依赖安装不计入），不是独立编译耗时SLA，本次时间未超限。 公开版已去除主机身份、本地路径及其他作业进程信息，完整证据仅保存在本地。 构建开始至第二次重试结束的墙钟时间为1306秒（21分46秒），包含中间排查，未超30分钟。"
     },
     "ut": {
       "status": "partial_success",
