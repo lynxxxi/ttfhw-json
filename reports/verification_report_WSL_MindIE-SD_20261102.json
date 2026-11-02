@@ -1,0 +1,2096 @@
+{
+  "metadata": {
+    "repo_url": "https://gitcode.com/Ascend/MindIE-SD.git",
+    "start_time": "2026-11-02T15:46:11",
+    "end_time": "2026-11-02T20:31:01",
+    "duration_seconds": 17090,
+    "total_steps": 102,
+    "branch": "dev",
+    "commit": "ee3920f9cd61030b90e5dcb1a0a432e52810251d",
+    "environment": "从官方Ubuntu22.04基础镜像搭建的隔离验证容器，分配16核/96GiB；宿主机身份、网络地址及本地路径已脱敏。模型精确ID及分项token统计不可得，0表示未知。",
+    "verifier": "Codex",
+    "repo_path": "/workspace/MindIE-SD"
+  },
+  "token_usage": {
+    "tool": "opencode",
+    "model": "unknown",
+    "input_tokens": 0,
+    "cache_hit_tokens": 0,
+    "cache_miss_tokens": 0,
+    "output_tokens": 0
+  },
+  "machine_spec": {
+    "host_machine": {
+      "architecture": "x86_64",
+      "cpu_model": "宿主机型号已脱敏",
+      "cpu_cores": 0,
+      "memory": "宿主机规格已脱敏",
+      "disk": "具体宿主路径与容量已脱敏，验证时空间充足",
+      "docker_version": "宿主机版本已脱敏"
+    },
+    "container": {
+      "os": "Ubuntu 22.04.5 LTS",
+      "architecture": "x86_64",
+      "cpu_cores": 16,
+      "memory": "96GiB，Docker硬限制"
+    },
+    "image_source": {
+      "type": "base_image",
+      "image_name": "ubuntu:22.04",
+      "selection_reason": "950系列镜像文档推荐Ubuntu22.04；从官方基础OS容器逐项安装。",
+      "dependency_mapping": {
+        "from_dockerfile": "Ubuntu依赖直接使用apt；aarch64专用Dockerfile仅作为工具链参考；可选调优工具非源码构建依赖。",
+        "mappings": []
+      }
+    }
+  },
+  "document_reading_summary": {
+    "architecture": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "x86_64，Ascend950PR"
+    },
+    "recommended_image": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "ubuntu:22.04，来自950系列官方镜像说明"
+    },
+    "dockerfile_dependencies": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "编译工具链与厂商SDK须在基础OS容器内安装；不复用预装镜像"
+    },
+    "dependencies": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": [
+        "Python>=3.10",
+        "torch==2.9.0",
+        "torch_npu==2.9.0",
+        "triton>=3.5.0",
+        "triton-ascend==3.2.1",
+        "CANN 9.1.0 Toolkit 与 950 ops"
+      ]
+    },
+    "build_commands": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "python setup.py bdist_wheel"
+    },
+    "ut_commands": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "python tests/scripts/run_suites.py"
+    },
+    "sample_commands": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": "python examples/dummy_run/wan_infer.py --device_id 0 --num_layers 2"
+    },
+    "special_dependencies": {
+      "source": "docs/zh/installation.md；docs/zh/developer_guide/test.md；docker/omni/OVERVIEW.zh.md；CANN官方安装指南",
+      "value": [
+        "CANN官方Runfile",
+        "https://triton-ascend.osinfra.cn/pypi/simple"
+      ]
+    }
+  },
+  "execution_log": [
+    {
+      "timestamp": "2026-11-02T15:48:07",
+      "step": "static_analysis",
+      "action": "随机抽取10个Git跟踪文件执行pre-commit",
+      "command": "pre-commit run  --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "[INFO] Initializing environment for https://gitcode.com/pre-commit/pre-commit-hooks.\nAn unexpected error has occurred: CalledProcessError: command: ('LOCAL_PATH_REDACTED', 'fetch', 'origin', '--tags')\nreturn code: 128\nstdout: (none)\nstderr:\n    fatal: unable to access 'https://gitcode.com/pre-commit/pre-commit-hooks/': Failed to connect to gitcode.com port 443 after 21072 ms: Could not connect to server\nCheck the log at LOCAL_WORKSPACE\\work\\precommit-cache\\pre-commit.log\n",
+      "error": "",
+      "success": false,
+      "returncode": 3,
+      "duration_seconds": 42.834,
+      "details": {
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ],
+        "selected_count": 10
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T15:49:21",
+      "step": "static_analysis",
+      "action": "随机抽取10个Git跟踪文件执行pre-commit",
+      "command": "pre-commit run  --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "[INFO] Initializing environment for https://gitcode.com/pre-commit/pre-commit-hooks.\n[WARNING] repo `https://gitcode.com/pre-commit/pre-commit-hooks` uses deprecated stage names (commit, push) which will be removed in a future version.  Hint: often `pre-commit autoupdate --repo https://gitcode.com/pre-commit/pre-commit-hooks` will fix this.  if it does not -- consider reporting an issue to that repo.\n[INFO] Initializing environment for https://gitcode.com/gh_mirrors/ru/ruff-pre-commit.\n[INFO] Initializing environment for https://gitcode.com/gh_mirrors/co/codespell.\n[INFO] Initializing environment for https://gitcode.com/gh_mirrors/pyl/pylint.\n[INFO] Initializing environment for https://gitcode.com/gh_mirrors/ba/bandit.\n[INF\n[中间原始输出已省略；完整日志保存在本地证据归档]\n..\n[INFO] Installing environment for https://gitcode.com/gh_mirrors/co/codespell.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\n[INFO] Installing environment for https://gitcode.com/gh_mirrors/pyl/pylint.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\n[INFO] Installing environment for https://gitcode.com/gh_mirrors/ba/bandit.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\n[INFO] Installing environment for https://gitcode.com/gh_mirrors/ty/typos.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\n[INFO] Installing environment for https://gitcode.com/gh_mirrors/ma/markdownlint-cli.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\nAn unexpected error has occurred: CalledProcessError: command: ('LOCAL_PATH_REDACTED', 'install', '--allow-git=root', '--install-links', '-g', 'git+file://LOCAL_PATH_REDACTED')\nreturn code: 4294967295\nstdout: (none)\nstderr: (none)\nCheck the log at LOCAL_WORKSPACE\\work\\precommit-cache\\pre-commit.log\n",
+      "error": "",
+      "success": false,
+      "returncode": 3,
+      "duration_seconds": 306.429,
+      "details": {
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ],
+        "selected_count": 10
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 README.md",
+      "output": "入口指向安装、贡献、测试和快速开始。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docs/zh/installation.md",
+      "output": "Python>=3.10；requirements.txt 后执行 python setup.py bdist_wheel；CANN 9.0.1/9.1.0；链接 cann/ops-cv 安装指南。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 contributing.md",
+      "output": "贡献指南迁移至根目录；lint 和统一测试入口已读取。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docs/zh/developer_guide/test.md",
+      "output": "统一入口 python tests/scripts/run_suites.py，支持 CPU 与 NPU 分类和 JUnit 产物。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docs/zh/quick_start.md",
+      "output": "Wan2.1 权重推理需单独下载权重；链接安装指南及模型社区。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docker/omni/OVERVIEW.zh.md",
+      "output": "Ubuntu22.04 x86 950 系列预装镜像；提供无需权重的 wan_infer.py --device_id 0 --num_layers 2。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docker/omni/Dockerfile.a5.ubuntu",
+      "output": "继承预装 quay.io/ascend/vllm-omni:v0.32.0-a5，baseos 流程不直接采用。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 docker/Dockerfile_910b_aarch64.ubuntu",
+      "output": "Ubuntu24.04，aarch64 910B 与目标 x86 950 不同；包含编译器和 Python 依赖参考。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 https://gitcode.com/cann/ops-cv/blob/master/docs/zh/install/quick_install.md",
+      "output": "通过 git clone 获取并读取完整原文；官方安装说明指向 CANN 下载页面。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 https://www.hiascend.com/cann/download",
+      "output": "公开接口确认 CANN9.1.0 versionId796；取得 x86 950 Runfile 下载和安装命令。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "document_reading",
+      "action": "读取验证相关文档",
+      "command": "读取 https://www.hiascend.com/document/detail/zh/CANNCommunityEdition/910/softwareinst/instg/instg_0050.html",
+      "output": "下载 doc_center 原文，确认 --whitelist=toolkit 只装 Toolkit，不安装主机驱动。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "environment_selection",
+      "action": "选择授权远程机器",
+      "command": "SSH 只读核查",
+      "output": "已检查用户授权机器的资源，选定有足够空间及空闲设备的远端机器；具体身份已脱敏。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:53:25",
+      "step": "image_selection",
+      "action": "锁定基础镜像与环境构建方式",
+      "command": "依据已读取文档选择环境",
+      "output": "使用ubuntu:22.04；未发现合规基础OS镜像构建脚本，采用容器内逐项安装。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "details": {
+        "build_method": "manual",
+        "reason": "文档提供预装镜像及源码安装，未提供合规基础OS环境构建脚本。"
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T15:54:50",
+      "step": "static_analysis",
+      "action": "随机抽取10个Git跟踪文件执行pre-commit",
+      "command": "pre-commit run  --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "[INFO] Installing environment for https://gitcode.com/gh_mirrors/ma/markdownlint-cli.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\nAn unexpected error has occurred: CalledProcessError: command: ('LOCAL_PATH_REDACTED', '-mnodeenv', '--prebuilt', '--clean-src', '\\\\\\\\?\\\\LOCAL_PATH_REDACTED')\nreturn code: 1\nstdout: (none)\nstderr:\n     * Install prebuilt node (26.13.0) .Incomplete read while reading from https://nodejs.org/download/release/v26.13.0/node-v26.13.0-win-x64.zip - The read operation timed out\n    Incomplete read while reading from https://nodejs.org/download/release/v26.13.0/node-v26.13.0-win-x64.zip - The read operation timed out\n    Incomplete read while reading from https://nodejs.org/download/release/v26.13.0/node-v26.13.0-win-x64.zip - The read operation timed out\n    Error: cannot download https://nodejs.org/download/release/v26.13.0/node-v26.13.0-win-x64.zip: The read operation timed out\nCheck the log at LOCAL_WORKSPACE\\work\\precommit-cache\\pre-commit.log\n",
+      "error": "",
+      "success": false,
+      "returncode": 3,
+      "duration_seconds": 476.466,
+      "details": {
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ],
+        "selected_count": 10
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T15:55:47",
+      "step": "container_setup",
+      "action": "从官方Ubuntu基础镜像创建独立验证容器",
+      "command": "scp work/container-create.sh VERIFY_HOST:/tmp/ttfhw-mindiesd-container-create.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-mindiesd-container-create.sh'\nexit $LASTEXITCODE\n",
+      "output": "22.04: Pulling from library/ubuntu\n0626d3cc316c: Pulling fs layer\n22.04: Pulling from library/ubuntu\n0626d3cc316c: Pulling fs layer\n",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\nTerminated\n",
+      "success": false,
+      "returncode": 143,
+      "duration_seconds": 188.408,
+      "result": "失败",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T15:59:05",
+      "step": "container_setup",
+      "action": "绕过失效镜像代理从官方Registry创建基础OS容器",
+      "command": "scp work/container-create.sh VERIFY_HOST:/tmp/ttfhw-mindiesd-container-create.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-mindiesd-container-create.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\nError response from daemon: Get \"https://registry-1.docker.io/v2/\": EOF\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 6.845,
+      "result": "失败",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:01:46",
+      "step": "container_setup",
+      "action": "从已校验官方manifest和镜像层的Ubuntu22.04创建验证容器",
+      "command": "scp work/container-create.sh VERIFY_HOST:/tmp/ttfhw-mindiesd-container-create.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-mindiesd-container-create.sh'\nexit $LASTEXITCODE\n",
+      "output": "sha256:a7b0f6af325461862a99c677cf3229ca5241d9f4f4289bd00cc2cce91a3aff23\n06f7706eee26e022996e6da50409a88f00b311866bff27c18deee3d1956d5266\nPRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\nWARNING: IPv4 forwarding is disabled. Networking will not work.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.16,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:02:08",
+      "step": "container_setup",
+      "action": "宿主禁用IPv4转发，使用host网络重建本次独立容器",
+      "command": "scp work/container-create.sh VERIFY_HOST:/tmp/ttfhw-mindiesd-container-create.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-mindiesd-container-create.sh'\nexit $LASTEXITCODE\n",
+      "output": "sha256:a7b0f6af325461862a99c677cf3229ca5241d9f4f4289bd00cc2cce91a3aff23\n793d120e5e8bb8f3d013afd771dd152134dbfd2635afa30059cc3d5691d99898\nPRETTY_NAME=\"Ubuntu 22.04.5 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"22.04\"\nVERSION=\"22.04.5 LTS (Jammy Jellyfish)\"\nVERSION_CODENAME=jammy\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=jammy\n",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.924,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:02:10",
+      "step": "dependency_installation",
+      "action": "后台启动基础工具链和核心依赖安装",
+      "command": "scp work/bootstrap-container.sh VERIFY_HOST:/tmp/ttfhw-bootstrap-container.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-bootstrap-container.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-bootstrap.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy -e HTTP_PROXY=\"$http_proxy\" -e HTTPS_PROXY=\"$http_proxy\" ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-bootstrap.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.833,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:02:12",
+      "step": "dependency_installation",
+      "action": "容器内执行：apt_update",
+      "command": "apt-get update",
+      "output": "Get:1 http://archive.ubuntu.com/ubuntu jammy InRelease [270 kB]\nGet:2 http://security.ubuntu.com/ubuntu jammy-security InRelease [129 kB]\nGet:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]\nGet:4 http://security.ubuntu.com/ubuntu jammy-security/main amd64 Packages [4464 kB]\nGet:5 http://archive.ubuntu.com/ubuntu\n[中间原始输出已省略；完整日志保存在本地证据归档]\n\nGet:12 http://archive.ubuntu.com/ubuntu jammy/main amd64 Packages [1792 kB]\nGet:13 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1629 kB]\nGet:14 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [4795 kB]\nGet:15 http://archive.ubuntu.com/ubuntu jammy-updates/restricted amd64 Packages [8289 kB]\nGet:16 http://archive.ubuntu.com/ubuntu jammy-updates/multiverse amd64 Packages [104 kB]\nGet:17 http://archive.ubuntu.com/ubuntu jammy-backports/universe amd64 Packages [35.6 kB]\nGet:18 http://archive.ubuntu.com/ubuntu jammy-backports/main amd64 Packages [82.9 kB]\nFetched 49.2 MB in 1min 5s (757 kB/s)\nReading package lists...\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 66,
+      "details": {
+        "journal_stage": "apt_update",
+        "remote_timestamp": "2026-11-02T07:58:33",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:03:18",
+      "step": "dependency_installation",
+      "action": "容器内执行：system_dependencies",
+      "command": "apt-get install -y --no-install-recommends ca-certificates gcc g++ make cmake git python3 python3-pip python3-dev curl wget build-essential libssl-dev zlib1g-dev libffi-dev pkg-config dos2unix",
+      "output": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following additional packages will be installed:\n  binutils binutils-common binutils-x86-64-linux-gnu bzip2 cmake-data cpp\n  cpp-11 dh-elpa-helper dpkg-dev emacsen-common g++-11 gcc-11 gcc-11-base\n  git-man libarchive13 libasan6 libatomic1 libbinu\n[中间原始输出已省略；完整日志保存在本地证据归档]\n(4:11.2.0-1ubuntu1) ...\nupdate-alternatives: using /usr/bin/g++ to provide /usr/bin/c++ (c++) in auto mode\nupdate-alternatives: warning: skip creation of /usr/share/man/man1/c++.1.gz because associated file /usr/share/man/man1/g++.1.gz (of link group c++) doesn't exist\nSetting up build-essential (12.9ubuntu3) ...\nSetting up libpython3-dev:amd64 (3.10.6-1~22.04.1) ...\nSetting up python3-dev (3.10.6-1~22.04.1) ...\nProcessing triggers for libc-bin (2.35-0ubuntu3.15) ...\nProcessing triggers for ca-certificates (20260816ubuntu0.22.04.1) ...\nUpdating certificates in /etc/ssl/certs...\n0 added, 0 removed; done.\nRunning hooks in /etc/ca-certificates/update.d...\ndone.\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 31,
+      "details": {
+        "journal_stage": "system_dependencies",
+        "remote_timestamp": "2026-11-02T07:59:39",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:03:49",
+      "step": "dependency_installation",
+      "action": "容器内执行：clone_source",
+      "command": "git clone --depth 1 --branch dev https://gitcode.com/Ascend/MindIE-SD.git /workspace/MindIE-SD",
+      "output": "Cloning into '/workspace/MindIE-SD'...\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 8,
+      "details": {
+        "journal_stage": "clone_source",
+        "remote_timestamp": "2026-11-02T08:00:10",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:03:57",
+      "step": "dependency_installation",
+      "action": "容器内执行：commit_verification",
+      "command": "git rev-parse HEAD",
+      "output": "ee3920f9cd61030b90e5dcb1a0a432e52810251d\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "details": {
+        "journal_stage": "commit_verification",
+        "remote_timestamp": "2026-11-02T08:00:18",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:03:57",
+      "step": "dependency_installation",
+      "action": "容器内执行：python_packaging",
+      "command": "python3 -m pip install wheel setuptools pybind11",
+      "output": "Requirement already satisfied: wheel in /usr/lib/python3/dist-packages (0.37.1)\nRequirement already satisfied: setuptools in /usr/lib/python3/dist-packages (59.6.0)\nCollecting pybind11\n  Downloading pybind11-3.1.0-py3-none-any.whl (319 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 319.4/319.4 KB 2.4 MB/s eta 0:00:00\nInstalling collected packages: pybind11\nSuccessfully installed pybind11-3.1.0\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2,
+      "details": {
+        "journal_stage": "python_packaging",
+        "remote_timestamp": "2026-11-02T08:00:18",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:03:59",
+      "step": "dependency_installation",
+      "action": "容器内执行：core_dependencies",
+      "command": "python3 -m pip install -r requirements.txt --extra-index-url https://triton-ascend.osinfra.cn/pypi/simple --trusted-host triton-ascend.osinfra.cn",
+      "output": "Looking in indexes: https://pypi.org/simple, https://triton-ascend.osinfra.cn/pypi/simple\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch==2.9.0\n  Downloading torch-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (899.8 MB)\n",
+      "error": "Looking in indexes: https://pypi.org/simple, https://triton-ascend.osinfra.cn/pypi/simple\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch==2.9.0\n  Downloading torch-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (899.8 MB)\n",
+      "success": false,
+      "returncode": 143,
+      "duration_seconds": 215,
+      "details": {
+        "journal_stage": "core_dependencies",
+        "remote_timestamp": "2026-11-02T08:00:20",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:13",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook trailing-whitespace",
+      "command": "pre-commit run trailing-whitespace --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "trim trailing whitespace.................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.623,
+      "details": {
+        "hook_id": "trailing-whitespace",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:15",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook end-of-file-fixer",
+      "command": "pre-commit run end-of-file-fixer --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "fix end of files.........................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.62,
+      "details": {
+        "hook_id": "end-of-file-fixer",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:15",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook check-yaml",
+      "command": "pre-commit run check-yaml --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "check yaml...........................................(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.479,
+      "details": {
+        "hook_id": "check-yaml",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:16",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook check-added-large-files",
+      "command": "pre-commit run check-added-large-files --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "check for added large files..............................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.702,
+      "details": {
+        "hook_id": "check-added-large-files",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:17",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook check-merge-conflict",
+      "command": "pre-commit run check-merge-conflict --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "check for merge conflicts................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.664,
+      "details": {
+        "hook_id": "check-merge-conflict",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:17",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook detect-private-key",
+      "command": "pre-commit run detect-private-key --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "detect private key.......................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.654,
+      "details": {
+        "hook_id": "detect-private-key",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:18",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook check-json",
+      "command": "pre-commit run check-json --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "check json...........................................(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.492,
+      "details": {
+        "hook_id": "check-json",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:18",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook ruff-check",
+      "command": "pre-commit run ruff-check --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "ruff check...............................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.584,
+      "details": {
+        "hook_id": "ruff-check",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:19",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook ruff-format",
+      "command": "pre-commit run ruff-format --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "ruff format..............................................................Failed\n- hook id: ruff-format\n- files were modified by this hook\n\n1 file reformatted, 1 file left unchanged\n\n",
+      "error": "",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 0.579,
+      "details": {
+        "hook_id": "ruff-format",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:20",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook codespell",
+      "command": "pre-commit run codespell --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "codespell................................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.728,
+      "details": {
+        "hook_id": "codespell",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:20",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook pylint",
+      "command": "pre-commit run pylint --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "pylint (Python code quality check).......................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.626,
+      "details": {
+        "hook_id": "pylint",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:22",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook bandit",
+      "command": "pre-commit run bandit --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "bandit (Python 安全漏洞检查).............................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.805,
+      "details": {
+        "hook_id": "bandit",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:23",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook typos",
+      "command": "pre-commit run typos --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "typos....................................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.619,
+      "details": {
+        "hook_id": "typos",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:23",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook kb-lint",
+      "command": "pre-commit run kb-lint --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "kb-lint (.agents knowledge base structure)...............................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.87,
+      "details": {
+        "hook_id": "kb-lint",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:24",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook kb-lint-selftest",
+      "command": "pre-commit run kb-lint-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "kb-lint selftest (negative samples)..................(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.435,
+      "details": {
+        "hook_id": "kb-lint-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:25",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook run-evals-selftest",
+      "command": "pre-commit run run-evals-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "run-evals selftest (negative samples)................(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.446,
+      "details": {
+        "hook_id": "run-evals-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:25",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook stage-gate-selftest",
+      "command": "pre-commit run stage-gate-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "stage-gate multi-agent contract selftest (negative samples)...(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.423,
+      "details": {
+        "hook_id": "stage-gate-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:26",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook fusion-scope-selftest",
+      "command": "pre-commit run fusion-scope-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "fusion-scope deliverable gate selftest (column cleanliness)...(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.43,
+      "details": {
+        "hook_id": "fusion-scope-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:26",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook check-output-selftest",
+      "command": "pre-commit run check-output-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "profiling-collect output gate selftest (negative samples)...(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.427,
+      "details": {
+        "hook_id": "check-output-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:26",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook collect-profile-selftest",
+      "command": "pre-commit run collect-profile-selftest --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "profiling-collect collect_profile gate wiring selftest (zero SSH)...(no files to check)Skipped\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.422,
+      "details": {
+        "hook_id": "collect-profile-selftest",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:27",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook clang-format",
+      "command": "pre-commit run clang-format --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "[INFO] Installing environment for https://gitcode.com/pre-commit-clang/mirrors-clang-format.\n[INFO] Once installed this environment will be reused.\n[INFO] This may take a few minutes...\nclang-format.............................................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 9.569,
+      "details": {
+        "hook_id": "clang-format",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:05:36",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook gitleaks-offline-scan",
+      "command": "pre-commit run gitleaks-offline-scan --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "Gitleaks Secret Scan(Local Binary).......................................Failed\n- hook id: gitleaks-offline-scan\n- exit code: 1\n\nExecutable `bash` not found\n\n",
+      "error": "",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 0.526,
+      "details": {
+        "hook_id": "gitleaks-offline-scan",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:06:15",
+      "step": "static_analysis",
+      "action": "执行pre-commit hook gitleaks-offline-scan",
+      "command": "pre-commit run gitleaks-offline-scan --files tests/UT/compilation/test_redundant_pass_cpu.py .agents/skills/profiling-analyze/references/operator-catalog.md csrc/ops/common/op_kernel/l0c_to_gm_iterator.h csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp .agents/skills/remote-access/SKILL.md mindiesd/layers/flash_attn/sparse_linear_attn.py csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h csrc/ops/prompt_flash_attention/op_kernel/mem.h",
+      "output": "Gitleaks Secret Scan(Local Binary).......................................Passed\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0.569,
+      "details": {
+        "hook_id": "gitleaks-offline-scan",
+        "selected_files": [
+          "tests/UT/compilation/test_redundant_pass_cpu.py",
+          ".agents/skills/profiling-analyze/references/operator-catalog.md",
+          "csrc/ops/common/op_kernel/l0c_to_gm_iterator.h",
+          "csrc/ops/eagle_quant_block_sparse_attention/op_kernel/eagle_quant_block_sparse_attention.cpp",
+          ".agents/skills/remote-access/SKILL.md",
+          "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+          "csrc/ops/prompt_flash_attention/op_kernel/prompt_flash_attention_s1s2_bns1_x310.h",
+          "csrc/ops/fused_infer_attention_score/op_kernel/attn_infra/epilogue/block/fused_block_epilogue_online_softmax.hpp",
+          "csrc/ops/fused_infer_attention_score/op_kernel/eagle_common/op_kernel/buffer_manager.h",
+          "csrc/ops/prompt_flash_attention/op_kernel/mem.h"
+        ]
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:07:35",
+      "step": "dependency_installation",
+      "action": "按PyTorch官方2.9.0安装指导选择CPU基础包，NPU由torch_npu提供",
+      "command": "scp work/resume-dependencies.sh VERIFY_HOST:/tmp/ttfhw-resume-dependencies.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-resume-dependencies.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-resume-dependencies.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-resume-dependencies.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.166,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:07:37",
+      "step": "dependency_installation",
+      "action": "容器内执行：pytorch_cpu",
+      "command": "python3 -m pip install torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cpu",
+      "output": "Looking in indexes: https://download.pytorch.org/whl/cpu\nCollecting torch==2.9.0\n  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\nERROR: Could not install packages due to an OSError: HTTPSConnectionPool(host='download-r2.pytorch.org', port=443): Max retries exceeded with url: /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)')))\n\n",
+      "error": "Looking in indexes: https://download.pytorch.org/whl/cpu\nCollecting torch==2.9.0\n  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\n  WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)'))': /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl\nERROR: Could not install packages due to an OSError: HTTPSConnectionPool(host='download-r2.pytorch.org', port=443): Max retries exceeded with url: /whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate in certificate chain (_ssl.c:1007)')))\n\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 9,
+      "details": {
+        "journal_stage": "pytorch_cpu",
+        "remote_timestamp": "2026-11-02T08:03:58",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:08:16",
+      "step": "dependency_installation",
+      "action": "补齐企业代理可信CA后重试官方PyTorch包安装",
+      "command": "scp work/resume-dependencies.sh VERIFY_HOST:/tmp/ttfhw-resume-dependencies.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-resume-dependencies.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-resume-dependencies.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-resume-dependencies.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.175,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:08:18",
+      "step": "dependency_installation",
+      "action": "容器内执行：pytorch_cpu_retry",
+      "command": "python3 -m pip install torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cpu",
+      "output": "Looking in indexes: https://download.pytorch.org/whl/cpu\nERROR: Could not install packages due to an OSError: Could not find a suitable TLS CA certificate bundle, invalid path: /tmp/ttfhw-system-ca.pem\n\n",
+      "error": "Looking in indexes: https://download.pytorch.org/whl/cpu\nERROR: Could not install packages due to an OSError: Could not find a suitable TLS CA certificate bundle, invalid path: /tmp/ttfhw-system-ca.pem\n\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 0,
+      "details": {
+        "journal_stage": "pytorch_cpu_retry",
+        "remote_timestamp": "2026-11-02T08:04:39",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:09:01",
+      "step": "dependency_installation",
+      "action": "使用可加载的系统CA继续官方依赖安装",
+      "command": "scp work/resume-dependencies.sh VERIFY_HOST:/tmp/ttfhw-resume-dependencies.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-resume-dependencies.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-resume-dependencies.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-resume-dependencies.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.155,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:09:03",
+      "step": "dependency_installation",
+      "action": "容器内执行：pytorch_cpu_retry2",
+      "command": "python3 -m pip install torch==2.9.0 torchvision==0.24.0 --index-url https://download.pytorch.org/whl/cpu",
+      "output": "Looking in indexes: https://download.pytorch.org/whl/cpu\nCollecting torch==2.9.0\n  Downloading https://download-r2.pytorch.org/whl/cpu/torch-2.9.0%2Bcpu-cp310-cp310-manylinux_2_28_x86_64.whl (184.4 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 184.4/184.4 MB 5.5 MB/s eta 0:00:00\nCollecting torchvision==0.24.0\n  Downloading https\n[中间原始输出已省略；完整日志保存在本地证据归档]\ncp310-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (20 kB)\nInstalling collected packages: mpmath, typing-extensions, sympy, pillow, numpy, networkx, MarkupSafe, fsspec, filelock, jinja2, torch, torchvision\nSuccessfully installed MarkupSafe-3.0.3 filelock-4.1.0 fsspec-2026.9.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.4.2 numpy-2.2.6 pillow-12.3.0 sympy-1.14.0 torch-2.9.0+cpu torchvision-0.24.0+cpu typing-extensions-4.16.0\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 89,
+      "details": {
+        "journal_stage": "pytorch_cpu_retry2",
+        "remote_timestamp": "2026-11-02T08:05:24",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:10:32",
+      "step": "dependency_installation",
+      "action": "容器内执行：core_dependencies_retry",
+      "command": "python3 -m pip install -r requirements.txt --extra-index-url https://triton-ascend.osinfra.cn/pypi/simple --trusted-host triton-ascend.osinfra.cn",
+      "output": "Looking in indexes: https://pypi.org/simple, https://triton-ascend.osinfra.cn/pypi/simple\nRequirement already satisfied: torch==2.9.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (2.9.0+cpu)\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch_npu==2.9.0\n  Downloading\n[中间原始输出已省略；完整日志保存在本地证据归档]\nady satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.1.0)\nRequirement already satisfied: jinja2 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (3.1.6)\nRequirement already satisfied: sympy>=1.13.3 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (1.14.0)\nRequirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.16.0)\nRequirement already satisfied: networkx>=2.5.1 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (3.4.2)\nCollecting scipy\n  Downloading scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.6/38.6 MB 3.7 MB/s eta 0:00:00\nCollecting pytest-xdist==3.6.1\n  Downloading pytest_xdist-3.6.1-py3-none-any.whl (46 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.1/46.1 KB 2.6 MB/s eta 0:00:00\nINFO: pip is looking at multiple versions of torch-npu to determine which version is compatible with other requirements. This could take a while.\nINFO: pip is looking at multiple versions of torch to determine which version is compatible with other requirements. This could take a while.\nCollecting torch==2.9.0\n  Downloading torch-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (899.8 MB)\n",
+      "error": "dist-packages (from -r requirements.txt (line 1)) (2.9.0+cpu)\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch_npu==2.9.0\n  Downloading torch_npu-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (27.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 27.6/27.6 MB 1.3 MB/s eta 0:00:00\nCollecting triton>\n[中间原始输出已省略；完整日志保存在本地证据归档]\nady satisfied: filelock in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.1.0)\nRequirement already satisfied: jinja2 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (3.1.6)\nRequirement already satisfied: sympy>=1.13.3 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (1.14.0)\nRequirement already satisfied: typing-extensions>=4.10.0 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.16.0)\nRequirement already satisfied: networkx>=2.5.1 in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (3.4.2)\nCollecting scipy\n  Downloading scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 38.6/38.6 MB 3.7 MB/s eta 0:00:00\nCollecting pytest-xdist==3.6.1\n  Downloading pytest_xdist-3.6.1-py3-none-any.whl (46 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.1/46.1 KB 2.6 MB/s eta 0:00:00\nINFO: pip is looking at multiple versions of torch-npu to determine which version is compatible with other requirements. This could take a while.\nINFO: pip is looking at multiple versions of torch to determine which version is compatible with other requirements. This could take a while.\nCollecting torch==2.9.0\n  Downloading torch-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (899.8 MB)\n",
+      "success": false,
+      "returncode": 143,
+      "duration_seconds": 300,
+      "details": {
+        "journal_stage": "core_dependencies_retry",
+        "remote_timestamp": "2026-11-02T08:06:53",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:15:47",
+      "step": "dependency_installation",
+      "action": "记录不可满足的Triton声明约束，并尝试无源码修改的依赖安装以继续构建验证",
+      "command": "scp work/resolve-dependencies.sh VERIFY_HOST:/tmp/ttfhw-resolve-dependencies.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-resolve-dependencies.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-resolve-dependencies.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-resolve-dependencies.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.848,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:15:49",
+      "step": "dependency_installation",
+      "action": "容器内执行：dependency_conflict_check",
+      "command": "python3 -m pip install -r requirements.txt -c /tmp/ttfhw-cpu-constraint.txt --extra-index-url https://triton-ascend.osinfra.cn/pypi/simple --trusted-host triton-ascend.osinfra.cn",
+      "output": "Looking in indexes: https://pypi.org/simple, https://triton-ascend.osinfra.cn/pypi/simple\nRequirement already satisfied: torch==2.9.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (2.9.0+cpu)\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch_npu==2.9.0\n  Using cache\n[中间原始输出已省略；完整日志保存在本地证据归档]\n filelock in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.1.0)\nCollecting pytest==8.3.2\n  Downloading pytest-8.3.2-py3-none-any.whl (341 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.8/341.8 KB 2.1 MB/s eta 0:00:00\nCollecting scipy\n  Using cached scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)\nCollecting psutil==6.0.0\n  Downloading psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (290 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 290.5/290.5 KB 8.1 MB/s eta 0:00:00\nINFO: pip is looking at multiple versions of torch-npu to determine which version is compatible with other requirements. This could take a while.\nINFO: pip is looking at multiple versions of torch to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install -r requirements.txt (line 4) and triton>=3.5.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    The user requested triton>=3.5.0\n    triton-ascend 3.2.1 depends on triton==3.2.0\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n",
+      "error": " /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (2.9.0+cpu)\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) is not a proper HTML 5 document. This is in violation of PEP 503 which requires these pages to be well-formed HTML 5 documents. Please reach out to the owners of this index page, and ask them to update this index page to a valid HTML 5 document. pip 22.2 will enforce this behaviour change. Discussion can be found at https://github.com/pypa/pip/issues/10825\nCollecting torch_npu==2.9.0\n  Using cached torch_npu-2.9.0-cp310-cp310-manylinux_2_28_x86_64.whl (27.6 MB)\nCollecting triton>=3.5.0\n  Using cached triton-3.8.0-cp310-cp310-manyl\n[中间原始输出已省略；完整日志保存在本地证据归档]\n filelock in /usr/local/lib/python3.10/dist-packages (from torch==2.9.0->-r requirements.txt (line 1)) (4.1.0)\nCollecting pytest==8.3.2\n  Downloading pytest-8.3.2-py3-none-any.whl (341 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 341.8/341.8 KB 2.1 MB/s eta 0:00:00\nCollecting scipy\n  Using cached scipy-1.13.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (38.6 MB)\nCollecting psutil==6.0.0\n  Downloading psutil-6.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (290 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 290.5/290.5 KB 8.1 MB/s eta 0:00:00\nINFO: pip is looking at multiple versions of torch-npu to determine which version is compatible with other requirements. This could take a while.\nINFO: pip is looking at multiple versions of torch to determine which version is compatible with other requirements. This could take a while.\nERROR: Cannot install -r requirements.txt (line 4) and triton>=3.5.0 because these package versions have conflicting dependencies.\n\nThe conflict is caused by:\n    The user requested triton>=3.5.0\n    triton-ascend 3.2.1 depends on triton==3.2.0\n\nTo fix this you could try to:\n1. loosen the range of package versions you've specified\n2. remove package versions to allow pip attempt to solve the dependency conflict\n\nERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 10,
+      "details": {
+        "journal_stage": "dependency_conflict_check",
+        "remote_timestamp": "2026-11-02T08:12:10",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:15:59",
+      "step": "dependency_installation",
+      "action": "容器内执行：core_direct_install",
+      "command": "python3 -m pip install --no-deps -r requirements.txt --extra-index-url https://triton-ascend.osinfra.cn/pypi/simple --trusted-host triton-ascend.osinfra.cn",
+      "output": "Looking in indexes: https://pypi.org/simple, https://triton-ascend.osinfra.cn/pypi/simple\nRequirement already satisfied: torch==2.9.0 in /usr/local/lib/python3.10/dist-packages (from -r requirements.txt (line 1)) (2.9.0+cpu)\nDEPRECATION: The HTML index page being used (https://repo.huaweicloud.com/ascend/repos/pypi/triton-ascend/) \n[中间原始输出已省略；完整日志保存在本地证据归档]\n-1.15.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (37.7 MB)\nCollecting attrs\n  Using cached attrs-26.1.0-py3-none-any.whl (67 kB)\nInstalling collected packages: triton-ascend, torch_npu, triton, strenum, scipy, safetensors, pyzmq, einops, decorator, attrs\nSuccessfully installed attrs-26.1.0 decorator-5.3.1 einops-0.8.2 pyzmq-27.2.0 safetensors-0.8.0 scipy-1.15.3 strenum-0.5.0 torch_npu-2.9.0 triton-3.8.0 triton-ascend-3.2.1\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 16,
+      "details": {
+        "journal_stage": "core_direct_install",
+        "remote_timestamp": "2026-11-02T08:12:20",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:16:15",
+      "step": "dependency_installation",
+      "action": "容器内执行：declared_transitive_dependencies",
+      "command": "python3 -m pip install attrs==24.2.0 numpy==1.26.4 scipy==1.13.1 decorator==5.1.1 psutil==6.0.0 pytest==8.3.2 pytest-xdist==3.6.1 pyyaml pybind11 pandas",
+      "output": "Collecting attrs==24.2.0\n  Downloading attrs-24.2.0-py3-none-any.whl (63 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.0/63.0 KB 851.5 kB/s eta 0:00:00\nCollecting numpy==1.26.4\n  Downloading numpy-1.26.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.2 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.2/18.2\n[中间原始输出已省略；完整日志保存在本地证据归档]\nis the source of the following dependency conflicts.\ntriton-ascend 3.2.1 requires triton==3.2.0, but you have triton 3.8.0 which is incompatible.\nSuccessfully installed attrs-24.2.0 decorator-5.1.1 exceptiongroup-1.3.1 execnet-2.1.2 iniconfig-2.3.1 numpy-1.26.4 packaging-26.3 pandas-2.3.3 pluggy-1.7.0 psutil-6.0.0 pytest-8.3.2 pytest-xdist-3.6.1 python-dateutil-3.0.0 pytz-2026.6 pyyaml-6.0.3 scipy-1.13.1 six-1.17.0 tomli-2.5.0 tzdata-2026.6\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 44,
+      "details": {
+        "journal_stage": "declared_transitive_dependencies",
+        "remote_timestamp": "2026-11-02T08:12:36",
+        "clock_offset_seconds": 29019
+      },
+      "result": "成功"
+    },
+    {
+      "timestamp": "2026-11-02T16:16:59",
+      "step": "dependency_installation",
+      "action": "容器内执行：dependency_consistency",
+      "command": "python3 -m pip check",
+      "output": "triton-ascend 3.2.1 has requirement triton==3.2.0, but you have triton 3.8.0.\n",
+      "error": "triton-ascend 3.2.1 has requirement triton==3.2.0, but you have triton 3.8.0.\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 0,
+      "details": {
+        "journal_stage": "dependency_consistency",
+        "remote_timestamp": "2026-11-02T08:13:20",
+        "clock_offset_seconds": 29019
+      },
+      "result": "失败"
+    },
+    {
+      "timestamp": "2026-11-02T16:16:59",
+      "step": "dependency_installation",
+      "action": "容器内执行：download_toolkit",
+      "result": "成功",
+      "command": "curl -fL --retry 2 https://ascend-cann-open.obs.cn-north-4.myhuaweicloud.com/CANN/CANN%209.1.0/Ascend-cann_9.1.0_linux-x86_64.run -o /tmp/Ascend-cann_9.1.0_linux-x86_64.run",
+      "output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0 1953M    0 3590k    0     0  3943k      0  0:08:27 --:--:--  0:08:27 3940k\n  0 1953M    0 3\n[中间原始输出已省略；完整日志保存在本地证据归档]\n0  0:13:48  0:13:40  0:00:08 5751k\n 99 1953M   99 1934M    0     0  2409k      0  0:13:49  0:13:41  0:00:08 5390k\n 99 1953M   99 1934M    0     0  2406k      0  0:13:50  0:13:42  0:00:08 3691k\n 99 1953M   99 1934M    0     0  2404k      0  0:13:51  0:13:43  0:00:08 1742k\n 99 1953M   99 1934M    0     0  2401k      0  0:13:52  0:13:44  0:00:08 52951\n 99 1953M   99 1935M    0     0  2399k      0  0:13:53  0:13:45  0:00:08  274k\n 99 1953M   99 1940M    0     0  2402k      0  0:13:52  0:13:47  0:00:05 1179k\n 99 1953M   99 1949M    0     0  2410k      0  0:13:49  0:13:48  0:00:01 2961k\n100 1953M  100 1953M    0     0  2414k      0  0:13:48  0:13:48 --:--:-- 4238k\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 828,
+      "details": {
+        "journal_stage": "download_toolkit",
+        "remote_timestamp": "2026-11-02T08:13:20",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:18:24",
+      "step": "dependency_installation",
+      "action": "后台下载官方950系列算子安装包",
+      "command": "scp work/download-ops.sh VERIFY_HOST:/tmp/ttfhw-download-ops.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-download-ops.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-download-ops.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-download-ops.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.219,
+      "result": "成功",
+      "details": {}
+    },
+    {
+      "timestamp": "2026-11-02T16:18:27",
+      "step": "dependency_installation",
+      "action": "容器内执行：download_ops",
+      "result": "成功",
+      "command": "curl -fL --retry 2 https://ascend-repo.obs.cn-east-2.myhuaweicloud.com/CANN/CANN%209.1.0/Ascend-cann-950-ops_9.1.0_linux-x86_64.run -o /tmp/Ascend-cann-950-ops_9.1.0_linux-x86_64.run",
+      "output": "  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current\n                                 Dload  Upload   Total   Spent    Left  Speed\n\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0\n  0 2430M    0 1\n[中间原始输出已省略；完整日志保存在本地证据归档]\n0  0:13:40  0:13:30  0:00:10 1726k\n 99 2430M   99 2415M    0     0  3048k      0  0:13:36  0:13:31  0:00:05 4921k\n 99 2430M   99 2426M    0     0  3059k      0  0:13:33  0:13:32  0:00:01 7227k\n 99 2430M   99 2426M    0     0  3055k      0  0:13:34  0:13:33  0:00:01 7236k\n 99 2430M   99 2426M    0     0  3051k      0  0:13:35  0:13:34  0:00:01 6931k\n 99 2430M   99 2426M    0     0  3048k      0  0:13:36  0:13:35  0:00:01 5584k\n 99 2430M   99 2426M    0     0  3044k      0  0:13:37  0:13:36  0:00:01 2388k\n 99 2430M   99 2428M    0     0  3042k      0  0:13:37  0:13:37 --:--:--  338k\n100 2430M  100 2430M    0     0  3042k      0  0:13:37  0:13:37 --:--:--  811k\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 817,
+      "details": {
+        "journal_stage": "download_ops",
+        "remote_timestamp": "2026-11-02T08:14:48",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:21:50",
+      "step": "build_preparation",
+      "action": "启动等待官方安装包下载完成后安装SDK并执行完整源码构建的后台流程",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/install-sdk-build.sh work/cmake-wrapper.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/install-sdk-build.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-install-sdk-build.sh; docker exec ttfhw-MindIE-SD-baseos-env mkdir -p /opt/ttfhw-bin; docker cp /tmp/cmake-wrapper.sh ttfhw-MindIE-SD-baseos-env:/opt/ttfhw-bin/cmake; docker exec ttfhw-MindIE-SD-baseos-env chmod +x /opt/ttfhw-bin/cmake; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-install-sdk-build.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.334
+    },
+    {
+      "timestamp": "2026-11-02T16:26:12",
+      "step": "dependency_installation",
+      "action": "按仓库文档安装测试与无权重样例依赖并复核核心包版本",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/install-test-deps.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/install-test-deps.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-install-test-deps.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-install-test-deps.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.136
+    },
+    {
+      "timestamp": "2026-11-02T16:26:14",
+      "step": "dependency_installation",
+      "action": "容器内执行：test_dependencies",
+      "result": "成功",
+      "command": "python3 -m pip install -r requirements-test.txt",
+      "output": "Collecting coverage>=7.6.10\n  Downloading coverage-7.16.2-cp310-cp310-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (252 kB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 252.8/252.8 KB 1.9 MB/s eta 0:00:00\nRequirement already satisfied: pytest>=8.3.2 in /usr/local/lib/python3.10/dist-packages (from -r requirement\n[中间原始输出已省略；完整日志保存在本地证据归档]\n /usr/local/lib/python3.10/dist-packages (from jinja2->torch->timm>=0.9.12->-r requirements-test.txt (line 3)) (3.0.3)\nInstalling collected packages: truststore, tqdm, idna, hf-xet, h11, coverage, click, httpcore2, anyio, httpx2, huggingface_hub, timm\nSuccessfully installed anyio-4.16.0 click-8.5.0 coverage-7.16.2 h11-0.16.0 hf-xet-1.8.0 httpcore2-2.14.0 httpx2-2.14.0 huggingface_hub-2.4.0 idna-3.20 timm-1.0.30 tqdm-4.70.1 truststore-0.10.5\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 15,
+      "details": {
+        "journal_stage": "test_dependencies",
+        "remote_timestamp": "2026-11-02T08:22:35",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:26:29",
+      "step": "dependency_installation",
+      "action": "容器内执行：sample_dependencies",
+      "result": "成功",
+      "command": "python3 -m pip install -r examples/dummy_run/requirements.txt",
+      "output": "Collecting diffusers==0.40.0\n  Downloading diffusers-0.40.0-py3-none-any.whl (5.9 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.9/5.9 MB 3.9 MB/s eta 0:00:00\nCollecting transformers==5.2.0\n  Downloading transformers-5.2.0-py3-none-any.whl (10.4 MB)\n     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.4/10.4 MB 4.1 MB/s eta 0:00:0\n[中间原始输出已省略；完整日志保存在本地证据归档]\ni-2026.10.23 charset_normalizer-3.5.2 diffusers-0.40.0 grpcio-1.85.1 httpcore-1.0.9 httpx-0.28.1 huggingface_hub-1.33.0 importlib_metadata-9.0.1 markdown-3.10.3 markdown-it-py-4.2.0 mdurl-0.1.2 protobuf-7.36.2 pygments-2.21.0 regex-2026.9.29 requests-2.34.2 rich-15.0.0 shellingham-1.5.4 tensorboard-2.20.0 tensorboard-data-server-0.7.2 tokenizers-0.22.2 transformers-5.2.0 typer-0.27.3 typer-slim-0.24.0 urllib3-2.8.0 werkzeug-3.1.9 zipp-4.1.2\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 38,
+      "details": {
+        "journal_stage": "sample_dependencies",
+        "remote_timestamp": "2026-11-02T08:22:50",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:27:07",
+      "step": "dependency_installation",
+      "action": "容器内执行：core_version_recheck",
+      "result": "成功",
+      "command": "python3 -m pip show torch torch_npu torchvision numpy triton triton-ascend",
+      "output": "Name: torch\nVersion: 2.9.0+cpu\nName: torch_npu\nVersion: 2.9.0\nName: torchvision\nVersion: 0.24.0+cpu\nName: numpy\nVersion: 1.26.4\nName: triton\nVersion: 3.8.0\nName: triton_ascend\nVersion: 3.2.1",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1,
+      "details": {
+        "journal_stage": "core_version_recheck",
+        "remote_timestamp": "2026-11-02T08:23:28",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:29:20",
+      "step": "dependency_installation",
+      "action": "按CANN官方安装指导在验证容器内创建SDK用户属组",
+      "result": "失败：后续检查证实容器内用户未创建",
+      "details": {},
+      "command": "ssh VERIFY_HOST 'docker exec ttfhw-MindIE-SD-baseos-env bash -c \"groupadd -f HwHiAiUser; id -u HwHiAiUser >/dev/null 2>&1 || useradd -g HwHiAiUser -d /home/HwHiAiUser -m HwHiAiUser -s /bin/bash; id HwHiAiUser\"'\nexit $LASTEXITCODE\n",
+      "output": "uid=1000(HwHiAiUser) gid=1000(HwHiAiUser) groups=1000(HwHiAiUser)\n",
+      "error": "复合SSH命令引号在Windows PowerShell中被错误传递；末条命令返回0不能证明容器内操作成功。",
+      "success": false,
+      "returncode": 0,
+      "duration_seconds": 1.324
+    },
+    {
+      "timestamp": "2026-11-02T16:30:29",
+      "step": "dependency_installation",
+      "action": "通过脚本文件在容器内创建并验证CANN用户属组",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/create-sdk-user.sh VERIFY_HOST:/tmp/ttfhw-create-sdk-user.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-create-sdk-user.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-create-sdk-user.sh; docker exec ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-create-sdk-user.sh'\nexit $LASTEXITCODE\n",
+      "output": "uid=1000(HwHiAiUser) gid=1000(HwHiAiUser) groups=1000(HwHiAiUser)\n",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.117
+    },
+    {
+      "timestamp": "2026-11-02T16:30:47",
+      "step": "dependency_installation",
+      "action": "容器内执行：toolkit_help",
+      "result": "成功",
+      "command": "bash /tmp/Ascend-cann_9.1.0_linux-x86_64.run --help",
+      "output": "Usage: /tmp/Ascend-cann_9.1.0_linux-x86_64.run [options]\nOptions:\n  --help | -h                       Print this message\n  --info                            Print embedded info : title, default target directory, embedded script ...\n  --list                            Print the list of files in the archive\n  --check                 \n[中间原始输出已省略；完整日志保存在本地证据归档]\n              Usually used with --noexec to just extract files without running\n  --tar arg1 [arg2 ...]             Access the contents of the archive through the tar command\n\n  --install | --devel | --full      Install run | devel | full mode\n    --install-path=<path>           Install to the specified path\n    --install-for-all               Install for all users\n    --force                         Force install\n    --whitelist=<feature_type>      Install features, must be toolkit, driver, all\n  \n  --uninstall                       Uninstall\n    --install-path=<path>           Uninstall from specific path\n  \n  --version                         Show version\n\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 0,
+      "details": {
+        "journal_stage": "toolkit_help",
+        "remote_timestamp": "2026-11-02T08:27:08",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:32:08",
+      "step": "dependency_installation",
+      "action": "容器内执行：install_toolkit",
+      "result": "成功",
+      "command": "bash /tmp/Ascend-cann_9.1.0_linux-x86_64.run --install --whitelist=toolkit --quiet",
+      "output": "[CANN] [20261102-00:28:40] [INFO] mkdir /var/log/ascend_seclog/\n[CANN] [20261102-00:28:40] [INFO] touch /var/log/ascend_seclog/ascend_all_cann_install.log\n[CANN] [20261102-00:28:40] [INFO] LogFile:/var/log/ascend_seclog/ascend_all_cann_install.log\n[CANN] [20261102-00:28:40] [INFO] install feature: toolkit\n[CANN] [20261102-00:28:40]\n[中间原始输出已省略；完整日志保存在本地证据归档]\n29:27] [INFO] Write Install_Path to /etc/Ascend/ascend_cann_install.info.\n[CANN] [20261102-00:29:27] [INFO] Write Toolkit_InstallPath to /etc/Ascend/ascend_cann_install.info.\ncp: cannot stat './script/TOOLKIT_uninstall.sh': No such file or directory\n\n\n===========\n= Summary =\n===========\n\nDriver:  Installed in /usr/local/Ascend/driver.\nCANN:    Ascend-cann_9.1.0_linux-x86_64 install success, installed in /usr/local/Ascend.\n\nPlease make sure that the environment variables have been configured.\n-  To take effect for current user, you can exec command below: source /usr/local/Ascend/cann/set_env.sh or add \"source /usr/local/Ascend/cann/set_env.sh\" to ~/.bashrc.\n\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 58,
+      "details": {
+        "journal_stage": "install_toolkit",
+        "remote_timestamp": "2026-11-02T08:28:29",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:33:06",
+      "step": "dependency_installation",
+      "action": "容器内执行：install_ops",
+      "result": "成功",
+      "command": "bash /tmp/Ascend-cann-950-ops_9.1.0_linux-x86_64.run --install --quiet",
+      "output": "[ops_950] [20261102-00:29:42] [INFO] touch /var/log/ascend_seclog/ascend_ops_950_install.log\n[ops_950] [20261102-00:29:42] [INFO] LogFile:/var/log/ascend_seclog/ascend_ops_950_install.log\n[ops_950] [20261102-00:29:42] [INFO] install start\n[ops_950] [20261102-00:29:42] [INFO] The installation path is /usr/local/Ascend.\n[ops_950] [20\n[中间原始输出已省略；完整日志保存在本地证据归档]\nicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n[ops_950] [20261102-00:31:08] [INFO] cann-950-ops-transformer_9.1.0_linux-x86_64.run --full --quiet --nox11 install success\n\n\n===========\n= Summary =\n===========\n\nDriver:   Not installed.\nops_950:  Ascend-cann-950-ops_9.1.0_linux-x86_64 install success, installed in /usr/local/Ascend.\n\nPlease make sure that the environment variables have been configured.\n-  To take effect for current user, you can exec command below: source /usr/local/Ascend/cann/set_env.sh or add \"source /usr/local/Ascend/cann/set_env.sh\" to ~/.bashrc.\n\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 101,
+      "details": {
+        "journal_stage": "install_ops",
+        "remote_timestamp": "2026-11-02T08:29:27",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:34:07",
+      "step": "time_calibration",
+      "action": "核对并校正报告中的远端时间戳",
+      "result": "成功",
+      "command": "SSH读取date +%s，与客户端往返采样中点比较",
+      "success": true,
+      "output": "远端时钟慢约29019秒；时间戳映射到客户端时间轴，原始远端时间保留在details，耗时仍按远端起止差值计算。",
+      "error": "",
+      "returncode": 0,
+      "duration_seconds": 0.833,
+      "details": {
+        "clock_offset_seconds": 29019,
+        "note": "具体主机时间采样已脱敏；耗时按同一时钟的起止差计算。"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:34:47",
+      "step": "dependency_installation",
+      "action": "容器内执行：sdk_environment",
+      "result": "失败",
+      "command": "python3 -c import torch,torch_npu; print(\"torch\",torch.__version__);print(\"torch_npu\",torch_npu.__version__);print(\"npu available\",torch.npu.is_available());print(\"npu count\",torch.npu.device_count());assert torch.npu.is_available()",
+      "output": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError\ntorch 2.9.0+cpu\ntorch_npu 2.9.0\nnpu available False\nnpu count 0\n",
+      "error": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError\ntorch 2.9.0+cpu\ntorch_npu 2.9.0\nnpu available False\nnpu count 0\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 4,
+      "details": {
+        "journal_stage": "sdk_environment",
+        "remote_timestamp": "2026-11-02T08:31:08",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:34:51",
+      "step": "build_attempt",
+      "action": "容器内执行：build_attempt",
+      "result": "失败",
+      "command": "bash -c time python3 setup.py bdist_wheel",
+      "output": "INFO: Build version is: 3.1.0\nINFO: Wheel build mode is: fixed\nrunning bdist_wheel\nrunning build\nrunning build_py\nINFO: Wheel build mode is: fixed\nINFO: ============================================================\nINFO: Starting MindIE-SD Build Process\nINFO: Project root: /workspace/MindIE-SD\nINFO: Build directory: /workspace/MindIE-SD/build\nINFO: ============================================================\nINFO: Python version is: py310\nINFO: ============================================================\nINFO: Building Ascend operators...\nINFO: ============================================================\nINFO: >>> Running script: bash /workspace/MindIE-SD/build/build_ops.sh /workspace/MindIE-SD/build\nUsing ASCEND_TOOLKIT_HOM\n[中间原始输出已省略；完整日志保存在本地证据归档]\nup.py\", line 386, in <module>\n    setup(\n  File \"/usr/lib/python3/dist-packages/setuptools/__init__.py\", line 153, in setup\n    return distutils.core.setup(**attrs)\n  File \"/usr/lib/python3.10/distutils/core.py\", line 148, in setup\n    dist.run_commands()\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 966, in run_commands\n    self.run_command(cmd)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/usr/lib/python3/dist-packages/wheel/bdist_wheel.py\", line 299, in run\n    self.run_command('build')\n  File \"/usr/lib/python3.10/distutils/cmd.py\", line 313, in run_command\n    self.distribution.run_command(command)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/usr/lib/python3.10/distutils/command/build.py\", line 135, in run\n    self.run_command(cmd_name)\n  File \"/usr/lib/python3.10/distutils/cmd.py\", line 313, in run_command\n    self.distribution.run_command(command)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/workspace/MindIE-SD/setup.py\", line 334, in run\n    run_script(build_plugin_script, args=[build_dir], cwd=build_dir)\n  File \"/workspace/MindIE-SD/setup.py\", line 174, in run_script\n    raise RuntimeError(\"Script execution failed: %s\" % script_path) from e\nRuntimeError: Script execution failed: /workspace/MindIE-SD/build/build_plugin.sh\n\nreal\t16m30.344s\nuser\t123m41.379s\nsys\t5m3.496s\n",
+      "error": "aicpu_kernels.so\nSource directory: /workspace/MindIE-SD/build/vendors\nDestination directory: /workspace/MindIE-SD/build/../mindiesd/ops/vendors\nCleaning destination directory...\nCopying all subdirectories under pkg to mindie/ops...\nCopying directory: /workspace/MindIE-SD/build/vendors/aie_ascendc → /workspace/MindIE-SD/build/../mindiesd/ops/vendors\nCopying directory: /workspace/MindIE-SD/build/vendors/customize → /workspace/MindIE-SD/build/../mindiesd/ops/vendors\nCopying directory: /workspace/MindIE-SD/build/vendors/customize_transformer → /workspace/MindIE-SD/build/../mindiesd/ops/vendors\nCopy finished!\nINFO: ============================================================\nINFO: Building PyTorch plugins...\nINFO: ==============\n[中间原始输出已省略；完整日志保存在本地证据归档]\nup.py\", line 386, in <module>\n    setup(\n  File \"/usr/lib/python3/dist-packages/setuptools/__init__.py\", line 153, in setup\n    return distutils.core.setup(**attrs)\n  File \"/usr/lib/python3.10/distutils/core.py\", line 148, in setup\n    dist.run_commands()\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 966, in run_commands\n    self.run_command(cmd)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/usr/lib/python3/dist-packages/wheel/bdist_wheel.py\", line 299, in run\n    self.run_command('build')\n  File \"/usr/lib/python3.10/distutils/cmd.py\", line 313, in run_command\n    self.distribution.run_command(command)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/usr/lib/python3.10/distutils/command/build.py\", line 135, in run\n    self.run_command(cmd_name)\n  File \"/usr/lib/python3.10/distutils/cmd.py\", line 313, in run_command\n    self.distribution.run_command(command)\n  File \"/usr/lib/python3.10/distutils/dist.py\", line 985, in run_command\n    cmd_obj.run()\n  File \"/workspace/MindIE-SD/setup.py\", line 334, in run\n    run_script(build_plugin_script, args=[build_dir], cwd=build_dir)\n  File \"/workspace/MindIE-SD/setup.py\", line 174, in run_script\n    raise RuntimeError(\"Script execution failed: %s\" % script_path) from e\nRuntimeError: Script execution failed: /workspace/MindIE-SD/build/build_plugin.sh\n\nreal\t16m30.344s\nuser\t123m41.379s\nsys\t5m3.496s\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 990,
+      "details": {
+        "journal_stage": "build_attempt",
+        "remote_timestamp": "2026-11-02T08:31:12",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:36:41",
+      "step": "environment_diagnosis",
+      "action": "诊断NPU未被容器运行时识别的原因",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/diagnose-npu.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/diagnose-npu.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-diagnose-npu.sh; docker exec ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-diagnose-npu.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 11.178
+    },
+    {
+      "timestamp": "2026-11-02T16:37:34",
+      "step": "environment_diagnosis",
+      "action": "补齐文档要求的DCMI驱动文件后复核NPU访问",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/diagnose-npu.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/diagnose-npu.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-diagnose-npu.sh; docker exec ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-diagnose-npu.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 9.969
+    },
+    {
+      "timestamp": "2026-11-02T16:41:53",
+      "step": "environment_diagnosis",
+      "action": "用独立短生命周期容器验证Ascend运行时对6号设备的隔离配置",
+      "result": "失败",
+      "details": {},
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "诊断命令返回非零，具体宿主路径和运行时标识已脱敏。",
+      "success": false,
+      "returncode": 127,
+      "duration_seconds": 1.969
+    },
+    {
+      "timestamp": "2026-11-02T16:43:05",
+      "step": "environment_diagnosis",
+      "action": "用runc和明确的6号设备映射诊断厂商运行时初始化限制",
+      "result": "失败",
+      "details": {},
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "诊断命令返回非零，具体宿主路径和运行时标识已脱敏。",
+      "success": false,
+      "returncode": 172,
+      "duration_seconds": 1.908
+    },
+    {
+      "timestamp": "2026-11-02T16:43:41",
+      "step": "environment_diagnosis",
+      "action": "仅执行npu-smi只读查询，区分缺失设备节点与运行时库问题",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 3.059
+    },
+    {
+      "timestamp": "2026-11-02T16:44:42",
+      "step": "environment_diagnosis",
+      "action": "验证950平台iommu和drv_debug节点是否为缺失项",
+      "result": "失败",
+      "details": {},
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "诊断命令返回非零，具体宿主路径和运行时标识已脱敏。",
+      "success": false,
+      "returncode": 172,
+      "duration_seconds": 1.919
+    },
+    {
+      "timestamp": "2026-11-02T16:45:35",
+      "step": "environment_diagnosis",
+      "action": "安装只读系统调用跟踪工具以定位NPU访问失败",
+      "result": "成功",
+      "details": {},
+      "command": "ssh VERIFY_HOST 'export http_proxy=$(git config --get http.proxy); docker exec -e http_proxy ttfhw-MindIE-SD-baseos-env apt-get install -y strace'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 9.235
+    },
+    {
+      "timestamp": "2026-11-02T16:45:45",
+      "step": "environment_diagnosis",
+      "action": "跟踪npu-smi实际失败的设备打开和ioctl调用",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/trace-npu.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/trace-npu.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-trace-npu.sh; docker exec ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-trace-npu.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.996
+    },
+    {
+      "timestamp": "2026-11-02T16:47:09",
+      "step": "environment_diagnosis",
+      "action": "在可ptrace的临时容器中定位缺失设备访问",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/trace-probe.sh VERIFY_HOST:/tmp/ttfhw-trace-probe.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-trace-probe.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 2.084
+    },
+    {
+      "timestamp": "2026-11-02T16:48:27",
+      "step": "environment_diagnosis",
+      "action": "检查设备6打开EBUSY是否由容器能力集限制导致",
+      "result": "失败",
+      "details": {},
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "诊断命令返回非零，具体宿主路径和运行时标识已脱敏。",
+      "success": false,
+      "returncode": 172,
+      "duration_seconds": 1.885
+    },
+    {
+      "timestamp": "2026-11-02T16:48:48",
+      "step": "environment_diagnosis",
+      "action": "验证950驱动对设备cgroup规则的要求，仍仅挂载6号计算卡",
+      "result": "失败",
+      "details": {
+        "approval_limit": "自动审批拒绝将探测容器放宽为所有设备的cgroup权限；该操作未执行。继续使用原有隔离环境记录验证结果。"
+      },
+      "command": "scp work/probe-runtime.sh VERIFY_HOST:/tmp/ttfhw-probe-runtime.sh\nssh VERIFY_HOST 'bash /tmp/ttfhw-probe-runtime.sh'\nexit $LASTEXITCODE\n",
+      "output": "已执行只读设备/运行时诊断。常规容器中目标设备打开返回EBUSY、DCMI初始化失败；详细主机拓扑和其他进程信息不公开。",
+      "error": "诊断命令返回非零，具体宿主路径和运行时标识已脱敏。",
+      "success": false,
+      "returncode": 172,
+      "duration_seconds": 1.895
+    },
+    {
+      "timestamp": "2026-11-02T16:52:35",
+      "step": "build_preparation",
+      "action": "应用仓库devcontainer环境设置并清理失败插件缓存后重试原始构建入口",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/retry-build.sh VERIFY_HOST:/tmp/ttfhw-retry-build.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-retry-build.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-retry-build.sh; docker exec -d ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-retry-build.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.867
+    },
+    {
+      "timestamp": "2026-11-02T16:52:38",
+      "step": "build_attempt",
+      "action": "容器内执行：build_retry1",
+      "result": "成功",
+      "command": "清理失败阶段缓存build/plugin_build；应用devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0；time python3 setup.py bdist_wheel",
+      "output": "INFO: Build version is: 3.1.0\nINFO: Wheel build mode is: fixed\nrunning bdist_wheel\nrunning build\nrunning build_py\nINFO: Wheel build mode is: fixed\nINFO: ============================================================\nINFO: Starting MindIE-SD Build Process\nINFO: Project root: /workspace/MindIE-SD\nINFO: Build directory: /workspace/MindI\n[中间原始输出已省略；完整日志保存在本地证据归档]\nls/norm.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/parallel_mgr.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/precision_compare.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/torch_npu_mock.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/triton_mock.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/utils.py'\nadding 'mindiesd-3.1.0.dist-info/LICENSE.md'\nadding 'mindiesd-3.1.0.dist-info/METADATA'\nadding 'mindiesd-3.1.0.dist-info/WHEEL'\nadding 'mindiesd-3.1.0.dist-info/top_level.txt'\nadding 'mindiesd-3.1.0.dist-info/RECORD'\nremoving build/bdist.linux-x86_64/wheel\n\nreal\t1m19.733s\nuser\t7m5.245s\nsys\t0m35.976s\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 80,
+      "details": {
+        "journal_stage": "build_retry1",
+        "remote_timestamp": "2026-11-02T08:48:59",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:55:15",
+      "step": "build_preparation",
+      "action": "按skill执行第二次清理插件缓存后的完整构建复核",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/retry-build.sh VERIFY_HOST:/tmp/ttfhw-retry-build.sh\nssh VERIFY_HOST 'docker cp /tmp/ttfhw-retry-build.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-retry-build.sh; docker exec -d ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-retry-build.sh build_retry2'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.858
+    },
+    {
+      "timestamp": "2026-11-02T16:55:17",
+      "step": "build_attempt",
+      "action": "容器内执行：build_retry2",
+      "result": "成功",
+      "command": "清理失败阶段缓存build/plugin_build；应用devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0；time python3 setup.py bdist_wheel",
+      "output": "INFO: Build version is: 3.1.0\nINFO: Wheel build mode is: fixed\nrunning bdist_wheel\nrunning build\nrunning build_py\nINFO: Wheel build mode is: fixed\nINFO: ============================================================\nINFO: Starting MindIE-SD Build Process\nINFO: Project root: /workspace/MindIE-SD\nINFO: Build directory: /workspace/MindI\n[中间原始输出已省略；完整日志保存在本地证据归档]\nls/norm.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/parallel_mgr.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/precision_compare.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/torch_npu_mock.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/triton_mock.py'\nadding 'mindiesd-3.1.0.data/purelib/tests/utils/utils/utils.py'\nadding 'mindiesd-3.1.0.dist-info/LICENSE.md'\nadding 'mindiesd-3.1.0.dist-info/METADATA'\nadding 'mindiesd-3.1.0.dist-info/WHEEL'\nadding 'mindiesd-3.1.0.dist-info/top_level.txt'\nadding 'mindiesd-3.1.0.dist-info/RECORD'\nremoving build/bdist.linux-x86_64/wheel\n\nreal\t1m19.492s\nuser\t7m2.583s\nsys\t0m35.898s\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 80,
+      "details": {
+        "journal_stage": "build_retry2",
+        "remote_timestamp": "2026-11-02T08:51:38",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:57:03",
+      "step": "test_preparation",
+      "action": "安装本次构建wheel，执行统一CPU与NPU测试入口及无权重样例",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/run-tests-sample.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/run-tests-sample.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-run-tests-sample.sh; export http_proxy=$(git config --get http.proxy); export https_proxy=$http_proxy; docker exec -d -e http_proxy -e https_proxy ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-run-tests-sample.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1.851
+    },
+    {
+      "timestamp": "2026-11-02T16:57:05",
+      "step": "artifact_installation",
+      "action": "容器内执行：wheel_install",
+      "result": "成功",
+      "command": "bash -c python3 -m pip install dist/mindiesd-*.whl",
+      "output": "Processing ./dist/mindiesd-3.1.0-cp310-cp310-linux_x86_64.whl\nRequirement already satisfied: torch in /usr/local/lib/python3.10/dist-packages (from mindiesd==3.1.0) (2.9.0+cpu)\nRequirement already satisfied: torch-npu in /usr/local/lib/python3.10/dist-packages (from mindiesd==3.1.0) (2.9.0)\nRequirement already satisfied: sympy>=1.1\n[中间原始输出已省略；完整日志保存在本地证据归档]\n->mindiesd==3.1.0) (4.1.0)\nRequirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.10/dist-packages (from sympy>=1.13.3->torch->mindiesd==3.1.0) (1.3.0)\nRequirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.10/dist-packages (from jinja2->torch->mindiesd==3.1.0) (3.0.3)\nmindiesd is already installed with the same version as the provided wheel. Use --force-reinstall to force an installation of the wheel.\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1,
+      "details": {
+        "journal_stage": "wheel_install",
+        "remote_timestamp": "2026-11-02T08:53:26",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:57:06",
+      "step": "smoke_test",
+      "action": "容器内执行：smoke_import",
+      "result": "成功",
+      "command": "python3 -c import mindiesd; print(mindiesd.__file__)",
+      "output": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/workspace/MindIE-SD/mindiesd/layers/flash_attn/__init__.py:27: UserWarning: Triton-Ascend is not available or is below 3.2.1.SparseLinearAttention is disabled. Install required dependencies to use it.\n  warnings.warn(\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/workspace/MindIE-SD/mindiesd/__init__.py\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 4,
+      "details": {
+        "journal_stage": "smoke_import",
+        "remote_timestamp": "2026-11-02T08:53:27",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:57:10",
+      "step": "ut_execution",
+      "action": "容器内执行：ut_execution",
+      "result": "失败",
+      "command": "bash -c time timeout 2400 python3 tests/scripts/run_suites.py",
+      "output": "Test artifacts: /tmp/ttfhw-test-results/run-w4m6wq5a\n........................................................................ [  3%]\n........................................................................ [  6%]\n........................................................................ [  9%]\n........................................................................ [ 12%]\n........................................................................ [ 15%]\n........................................................................ [ 18%]\n........................................................................ [ 21%]\n........................................................................ [ 24%]\n........................................\n[中间原始输出已省略；完整日志保存在本地证据归档]\nws_int64_normal_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int32_uniform_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int32_normal_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int64_uniform_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int64_normal_5376]\n4 failed, 1966 passed, 2 warnings, 375 errors in 43.67s\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError: NPU suite requires a working device backend\n[ERROR] 2026-11-02-00:54:20 (PID:199967, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception\nCombined 1 file\nWrote JSON report to /tmp/ttfhw-test-results/run-w4m6wq5a/coverage.json\n\nreal\t0m50.952s\nuser\t1m14.666s\nsys\t0m23.954s\n",
+      "error": "valid_arguments[storage_alias_other_partial_overlap_int64_normal_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_other_disjoint_views_int32_uniform_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_other_disjoint_views_int32_normal_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_other_disjoint_views_int64_uniform_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_other_disjoint_views_int64_normal_32]\nERROR tests/layers/index_modulation/_indexed_g\n[中间原始输出已省略；完整日志保存在本地证据归档]\nws_int64_normal_32]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int32_uniform_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int32_normal_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int64_uniform_5376]\nERROR tests/layers/index_modulation/_indexed_gate_kernel/test_indexed_gate.py::test_invalid_arguments[storage_alias_gate_same_start_int64_normal_5376]\n4 failed, 1966 passed, 2 warnings, 375 errors in 43.67s\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\nAssertionError: NPU suite requires a working device backend\n[ERROR] 2026-11-02-00:54:20 (PID:199967, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception\nCombined 1 file\nWrote JSON report to /tmp/ttfhw-test-results/run-w4m6wq5a/coverage.json\n\nreal\t0m50.952s\nuser\t1m14.666s\nsys\t0m23.954s\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 50,
+      "details": {
+        "journal_stage": "ut_execution",
+        "remote_timestamp": "2026-11-02T08:53:31",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:58:00",
+      "step": "sample_execution",
+      "action": "容器内执行：sample_execution",
+      "result": "失败",
+      "command": "bash -c time timeout 600 python3 examples/dummy_run/wan_infer.py --device_id 0 --num_layers 2",
+      "output": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"/workspace/MindIE-SD/examples/dummy_run/wan_infer.py\", line 241, in <module>\n    main()\n  File \"/workspace/MindIE-SD/examples/dummy_run/wan_infer.py\", line 160, in main\n    check_npu()\n  File \"/workspace/MindIE-SD/examples/dummy_run/model/__init__.py\", line 28, in check_npu\n    raise RuntimeError(\"NPU is not available\")\nRuntimeError: NPU is not available\n[ERROR] 2026-11-02-00:54:25 (PID:199997, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception\n\nreal\t0m5.135s\nuser\t0m4.754s\nsys\t0m1.170s\n",
+      "error": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\nTraceback (most recent call last):\n  File \"/workspace/MindIE-SD/examples/dummy_run/wan_infer.py\", line 241, in <module>\n    main()\n  File \"/workspace/MindIE-SD/examples/dummy_run/wan_infer.py\", line 160, in main\n    check_npu()\n  File \"/workspace/MindIE-SD/examples/dummy_run/model/__init__.py\", line 28, in check_npu\n    raise RuntimeError(\"NPU is not available\")\nRuntimeError: NPU is not available\n[ERROR] 2026-11-02-00:54:25 (PID:199997, Device:-1, RankID:-1) ERR99999 UNKNOWN applicaiton exception\n\nreal\t0m5.135s\nuser\t0m4.754s\nsys\t0m1.170s\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 6,
+      "details": {
+        "journal_stage": "sample_execution",
+        "remote_timestamp": "2026-11-02T08:54:21",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:58:06",
+      "step": "dependency_installation",
+      "action": "容器内执行：final_dependency_consistency",
+      "result": "失败",
+      "command": "python3 -m pip check",
+      "output": "ms-service-profiler 26.0.0 requires loguru, which is not installed.\nms-service-profiler 26.0.0 requires matplotlib, which is not installed.\nms-service-profiler 26.0.0 requires msguard, which is not installed.\nms-service-profiler 26.0.0 requires openpyxl, which is not installed.\nms-service-profiler 26.0.0 requires opentelemetry-exporter-otlp-proto-grpc, which is not installed.\nms-service-profiler 26.0.0 requires opentelemetry-exporter-otlp-proto-http, which is not installed.\nms-service-profiler 26.0.0 requires pydantic, which is not installed.\nmindstudio-kpp 26.1.0 requires plotly, which is not installed.\naffinity-sched 26.1.0 requires argparse, which is not installed.\ntriton-ascend 3.2.1 has requirement triton==3.2.0, but you have triton 3.8.0.\n",
+      "error": "ms-service-profiler 26.0.0 requires loguru, which is not installed.\nms-service-profiler 26.0.0 requires matplotlib, which is not installed.\nms-service-profiler 26.0.0 requires msguard, which is not installed.\nms-service-profiler 26.0.0 requires openpyxl, which is not installed.\nms-service-profiler 26.0.0 requires opentelemetry-exporter-otlp-proto-grpc, which is not installed.\nms-service-profiler 26.0.0 requires opentelemetry-exporter-otlp-proto-http, which is not installed.\nms-service-profiler 26.0.0 requires pydantic, which is not installed.\nmindstudio-kpp 26.1.0 requires plotly, which is not installed.\naffinity-sched 26.1.0 requires argparse, which is not installed.\ntriton-ascend 3.2.1 has requirement triton==3.2.0, but you have triton 3.8.0.\n",
+      "success": false,
+      "returncode": 1,
+      "duration_seconds": 0,
+      "details": {
+        "journal_stage": "final_dependency_consistency",
+        "remote_timestamp": "2026-11-02T08:54:27",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:59:20",
+      "step": "artifact_verification",
+      "action": "从仓库外强制安装实际wheel并验证从site-packages导入",
+      "result": "成功",
+      "details": {},
+      "command": "scp work/verify-wheel.sh VERIFY_HOST:/tmp/\nssh VERIFY_HOST 'docker cp /tmp/verify-wheel.sh ttfhw-MindIE-SD-baseos-env:/tmp/ttfhw-verify-wheel.sh; docker exec ttfhw-MindIE-SD-baseos-env bash /tmp/ttfhw-verify-wheel.sh'\nexit $LASTEXITCODE\n",
+      "output": "",
+      "error": "\nAuthorized users only. All activities may be monitored and reported.\n\nAuthorized users only. All activities may be monitored and reported.\n",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 6.305
+    },
+    {
+      "timestamp": "2026-11-02T16:59:22",
+      "step": "dependency_installation",
+      "action": "容器内执行：wheel_install_verified",
+      "result": "成功",
+      "command": "bash -c python3 -m pip install --force-reinstall --no-deps /workspace/MindIE-SD/dist/mindiesd-*.whl",
+      "output": "Processing /workspace/MindIE-SD/dist/mindiesd-3.1.0-cp310-cp310-linux_x86_64.whl\nInstalling collected packages: mindiesd\nSuccessfully installed mindiesd-3.1.0\nWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 1,
+      "details": {
+        "journal_stage": "wheel_install_verified",
+        "remote_timestamp": "2026-11-02T08:55:43",
+        "clock_offset_seconds": 29019
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:59:23",
+      "step": "dependency_installation",
+      "action": "容器内执行：smoke_import_verified",
+      "result": "成功",
+      "command": "python3 -c import mindiesd; print(mindiesd.__file__); assert mindiesd.__file__.startswith(\"/usr/local/lib/\")",
+      "output": "/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/usr/local/lib/python3.10/dist-packages/mindiesd/layers/flash_attn/__init__.py:27: UserWarning: Triton-Ascend is not available or is below 3.2.1.SparseLinearAttention is disabled. Install required dependencies to use it.\n  warnings.warn(\n/usr/local/lib/python3.10/dist-packages/torch_npu/npu/__init__.py:384: UserWarning: Can't get ascend_hal device count\n  warnings.warn(\"Can't get ascend_hal device count\")\n/usr/local/lib/python3.10/dist-packages/mindiesd/__init__.py\nFailed to obtain the console log level. The possible causes are as follows:\n 1. Different containers share the same device;\n 2. Failed to open the character device when interacting with the OS kernel;\n 3. Failed to obtain the number of devices.\n",
+      "error": "",
+      "success": true,
+      "returncode": 0,
+      "duration_seconds": 3,
+      "details": {
+        "journal_stage": "smoke_import_verified",
+        "remote_timestamp": "2026-11-02T08:55:44",
+        "clock_offset_seconds": 29019
+      }
+    }
+  ],
+  "final_results": {
+    "static_analysis": {
+      "enabled": true,
+      "summary": "已实际执行随机抽样；存在格式问题和本地环境限制，详见逐条日志。",
+      "pre_commit": {
+        "configured": true,
+        "config_file": ".pre-commit-config.yaml",
+        "status": "failed",
+        "duration_seconds": 850,
+        "total_hooks": 23,
+        "passed": 13,
+        "failed": 1,
+        "skipped": 9,
+        "failures": [
+          {
+            "hook_name": "ruff-format",
+            "file": "mindiesd/layers/flash_attn/sparse_linear_attn.py",
+            "error": "hook实际修改了文件格式，返回1；仅影响本地文档检查副本，远端构建使用独立克隆的原始提交。"
+          }
+        ],
+        "executed_in_verification": true,
+        "note": "同一批10个Git跟踪文件；Markdown hook因Node下载超时未启动。Ruff格式检查发现需格式化的文件。Gitleaks入口在补齐Git Bash路径后返回0，仓库包装脚本可在本地二进制缺失时跳过实际扫描。"
+      },
+      "lint_runner": {
+        "configured": false,
+        "config_file": ""
+      }
+    },
+    "devcontainer": {
+      "enabled": true,
+      "config_dir": ".devcontainer/cpu",
+      "config_files": [
+        ".devcontainer/cpu/devcontainer.json"
+      ],
+      "original_base_image": "swr.cn-north-4.myhuaweicloud.com/inference/ascend_mindie_ubuntu_x86:20260305_ubuntu24_3.0.0_cann8.5.1_torch2.9.0_py311",
+      "used_image": "ubuntu:22.04",
+      "summary": "配置使用预装镜像；本次基础OS验证独立搭建。"
+    },
+    "build": {
+      "status": "success",
+      "duration_seconds": 1150,
+      "artifacts": [
+        {
+          "name": "mindiesd-3.1.0-cp310-cp310-linux_x86_64.whl",
+          "path": "/workspace/MindIE-SD/dist/mindiesd-3.1.0-cp310-cp310-linux_x86_64.whl",
+          "size": "65917739 bytes",
+          "type": "wheel"
+        }
+      ],
+      "compiler": "GCC 11.4.0",
+      "cmake": "3.22.1",
+      "concurrency": 8,
+      "concurrency_ratio": "50%",
+      "notes": "首次构建990秒在插件ABI检测阶段失败；采用仓库devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0并清理失败阶段插件缓存后，两次完整入口构建均成功，分别80秒。未修改源码。标准requirements因Triton版本约束冲突无法直接安装，兼容安装采用--no-deps并保留pip check失败，不能判定标准安装全流程通过。wheel SHA256：ad16ec35422fefa861607c6e17075e2193663a7d4951478f5bbdb5ab96090021。编译及两次重试合计1150秒；skill限制是单个问题调试30–60分钟（依赖安装不计入），不是独立编译耗时SLA，本次时间未超限。 公开版已去除主机身份、本地路径及其他作业进程信息，完整证据仅保存在本地。"
+    },
+    "ut": {
+      "status": "partial_success",
+      "duration_seconds": 50,
+      "total": 2345,
+      "passed": 1966,
+      "failed": 379,
+      "failures": [
+        {
+          "test_name": "tests.UT.layers.index_modulation._rms_norm_indexed_scale_shift_kernel.test_index_modulation_accuracy",
+          "error": "本组37项失败/错误；代表用例：tests.UT.layers.index_modulation._rms_norm_indexed_scale_shift_kernel.test_index_modulation_accuracy::test_invalid_hidden_size[0-empty-rows]；原因：failed on setup with \"ImportError: cannot import name 'get_vectorcore_num' from '_index_modulation_contract.triton_utils' (unknown location)\""
+        },
+        {
+          "test_name": "tests.UT.layers.moe.test_moe.TestMoeFunction",
+          "error": "本组4项失败/错误；代表用例：tests.UT.layers.moe.test_moe.TestMoeFunction::test_default_dispatcher_selection_and_static_override；原因：AttributeError: <function moe at 0x7f9e6093b010> does not have the attribute 'unified_apply_mlp'"
+        },
+        {
+          "test_name": "tests.layers.index_modulation._indexed_gate_kernel.test_indexed_gate",
+          "error": "本组338项失败/错误；代表用例：tests.layers.index_modulation._indexed_gate_kernel.test_indexed_gate::test_accuracy[small_01_uniform]；原因：failed on setup with \"KeyError: 'INDEXED_GATE_DEVICE'\""
+        },
+        {
+          "test_name": "NPU阶段预检",
+          "error": "本组1项失败/错误；代表用例：NPU阶段预检；原因：统一测试入口已尝试NPU阶段，但torch.npu.is_available()为False，预检失败；未执行NPU用例，不计入CPU的2345项统计。设备6打开返回EBUSY，DCMI返回-8020。"
+        },
+        {
+          "test_name": "NPU阶段预检",
+          "error": "统一测试入口已尝试NPU阶段，但torch.npu.is_available()为False，预检失败；未执行NPU用例，不计入CPU的2345项统计。设备6打开返回EBUSY，DCMI返回-8020。"
+        }
+      ],
+      "skipped": 0,
+      "failure_reason": "CPU模式：1966通过、4失败、375错误。37项夹具缺失get_vectorcore_num，338项缺少INDEXED_GATE_DEVICE环境变量，4项MoE mock目标属性不存在。NPU阶段预检未通过，未执行NPU用例。"
+    },
+    "sample": {
+      "status": "failed",
+      "duration_seconds": 6,
+      "results": [
+        {
+          "sample_name": "examples/dummy_run/wan_infer.py --device_id 0 --num_layers 2",
+          "execution_status": "failed",
+          "output_summary": "check_npu抛出RuntimeError: NPU is not available；未完成推理。",
+          "execution_time": "6秒"
+        }
+      ],
+      "reason": "无权重Wan样例已实际执行，因NPU不可用退出。",
+      "failure_reason": "无权重Wan样例已实际执行，因NPU不可用退出。"
+    }
+  },
+  "documentation_gaps": [
+    {
+      "time": "2026-11-02T16:16:54",
+      "title": "核心依赖存在不可满足的Triton版本约束",
+      "body": "requirements.txt要求triton>=3.5.0，同时固定triton-ascend==3.2.1；后者wheel元数据要求triton==3.2.0。实际pip安装返回ResolutionImpossible。后续采用--no-deps安装直接依赖以继续构建，属于兼容尝试，不能视为标准安装通过。",
+      "source": "requirements.txt第3-4行；triton-ascend 3.2.1 wheel元数据；dependency_conflict_check实际日志"
+    }
+  ],
+  "problems_encountered": [
+    {
+      "timestamp": "2026-11-02T16:16:54",
+      "problem": "Docker镜像代理504、守护进程直连EOF，基础镜像无法常规拉取。",
+      "solution": "通过系统可信代理从Docker官方Registry读取Ubuntu22.04，校验manifest、配置和所有镜像层SHA256后docker load。",
+      "source": "基础镜像获取日志"
+    },
+    {
+      "timestamp": "2026-11-02T16:16:54",
+      "problem": "宿主机禁用IPv4转发，默认桥接容器无法联网。",
+      "solution": "仅重建本次空容器并使用host网络；后续apt下载成功。",
+      "source": "container_setup与apt_update日志"
+    },
+    {
+      "timestamp": "2026-11-02T16:16:54",
+      "problem": "PyTorch分发CDN经企业代理签发证书，干净容器不信任该CA。",
+      "solution": "复制宿主机可信CA实际内容供PIP_CERT使用；保持TLS校验，PyTorch2.9.0+cpu安装成功。",
+      "source": "pytorch_cpu及pytorch_cpu_retry2日志"
+    },
+    {
+      "timestamp": "2026-11-02T16:55:42",
+      "problem": "NPU驱动初始化告警进入torch ABI探测stdout，USER_ABI_VERSION被污染，插件CMake配置失败。",
+      "solution": "采用仓库.devcontainer/cpu/devcontainer.json已有的TORCH_DEVICE_BACKEND_AUTOLOAD=0；清理build/plugin_build缓存后重跑完整构建入口，返回0并生成wheel。",
+      "source": "build_attempt和build_retry1实际日志；.devcontainer/cpu/devcontainer.json"
+    }
+  ],
+  "process_timeline": [
+    {
+      "timestamp": "2026-11-02T15:46:11",
+      "phase": "获取与准备",
+      "status": "success",
+      "minutes": 0,
+      "details": {
+        "summary": "读取用户指定skill与目标仓文档，选择空闲机器，从官方Ubuntu22.04基础镜像逐项安装。"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:34:51",
+      "phase": "构建",
+      "status": "success",
+      "minutes": 19.17,
+      "details": {
+        "summary": "首次构建990秒在插件ABI检测阶段失败；采用仓库devcontainer的TORCH_DEVICE_BACKEND_AUTOLOAD=0并清理失败阶段插件缓存后，两次完整入口构建均成功，分别80秒。未修改源码。标准requirements因Triton版本约束冲突无法直接安装，兼容安装采用--no-deps并保留pip check失败，不能判定标准安装全流程通过。wheel SHA256：ad16ec35422fefa861607c6e17075e2193663a7d4951478f5bbdb5ab96090021。编译及两次重试合计1150秒；skill限制是单个问题调试30–60分钟（依赖安装不计入），不是独立编译耗时SLA，本次时间未超限。"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:57:10",
+      "phase": "测试",
+      "status": "partial_success",
+      "minutes": 0.83,
+      "details": {
+        "summary": "CPU模式：1966通过、4失败、375错误。37项夹具缺失get_vectorcore_num，338项缺少INDEXED_GATE_DEVICE环境变量，4项MoE mock目标属性不存在。NPU阶段预检未通过，未执行NPU用例。"
+      }
+    },
+    {
+      "timestamp": "2026-11-02T16:58:00",
+      "phase": "样例",
+      "status": "failed",
+      "minutes": 0.1,
+      "details": {
+        "summary": "NPU不可用，样例未通过。"
+      }
+    }
+  ]
+}
